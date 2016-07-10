@@ -1,0 +1,38 @@
+
+<ion-navbar *navbar>
+  <ion-title>Log In</ion-title>
+</ion-navbar>
+
+<ion-content padding >
+
+  <p>
+    myResponse: {{ myResponse }}
+  </p>
+
+  <p>
+    myError: {{ myError }}
+  </p>
+  
+  <ion-list>
+
+    <ion-item>
+      <ion-input [(ngModel)]="loginUser.username" type="text" placeholder="Username"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-input [(ngModel)]="loginUser.password" type="password" placeholder="Password"></ion-input>
+    </ion-item>
+  
+  </ion-list>
+  
+  <p>
+    <button primary (click)="loginThisUser()" >Log In</button>
+  </p>
+  
+    <p>Or</p>
+    
+  <p>
+    <button primary (click)="openFacebook()" >Sign up with Facebook</button>
+  </p>
+
+</ion-content>

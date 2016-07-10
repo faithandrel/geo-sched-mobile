@@ -1,0 +1,26 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Getting Started</ion-title>
+</ion-navbar>
+
+
+<ion-content padding class="getting-started">
+
+  <h3>Getting Started</h3>
+  <p>
+    myResponse: {{ myResponse }}
+  </p>
+  
+  <ion-item>
+    <ion-label stacked>Message</ion-label>
+    <ion-textarea rows="4" ></ion-textarea>
+  </ion-item>
+  
+  <p>
+    <button primary (click)="testAuth()" >Get Auth Data</button>
+  </p>
+
+</ion-content>
