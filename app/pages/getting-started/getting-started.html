@@ -16,11 +16,11 @@
   
   <ion-item>
     <ion-label stacked>Message</ion-label>
-    <ion-textarea rows="4" ></ion-textarea>
+    <ion-textarea [(ngModel)]="myItem.content" rows="4" ></ion-textarea>
   </ion-item>
   
   <p>
-    <button primary (click)="testAuth()" >Get Auth Data</button>
+    <button primary (click)="saveThisItem()" >Submit</button>
   </p>
 
 </ion-content>

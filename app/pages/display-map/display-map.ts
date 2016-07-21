@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 import {Geolocation} from 'ionic-native';
 
+import {SchdErrorHandler} from '../../services/schd-error-handler';
+
 @Component({
   templateUrl: 'build/pages/display-map/display-map.html'
 })
@@ -30,7 +32,7 @@ export class DisplayMapPage implements OnInit {
       
     },
     (error) => {
-       this.myError = error;
+      //SchdErrorHandler.showSchdError(error);
     });
 
   }

@@ -3,6 +3,7 @@ import {Nav} from 'ionic-angular';
 import {GettingStartedPage} from '../../pages/getting-started/getting-started';
 
 import {BackEndService} from '../../services/back-end-service';
+import {SchdErrorHandler} from '../../services/schd-error-handler';
 
 @Component({
   templateUrl: 'build/pages/log-in/log-in.html'
@@ -14,7 +15,9 @@ export class LogInPage implements OnInit {
   myResponse: any;
   myNav: any;
   
-  constructor(private backEndService: BackEndService, private thisNav: Nav) {
+  constructor(private backEndService: BackEndService,
+              private schdErrorHandler: SchdErrorHandler,
+              private thisNav: Nav) {
     this.myNav = thisNav;
   }
   
@@ -25,12 +28,18 @@ export class LogInPage implements OnInit {
         .then(res => {
             this.myNav.setRoot(GettingStartedPage);
           })
-        .catch(error => this.myError = error);
+        .catch(error => {
+            this.schdErrorHandler.showSchdError(error, this.myNav);
+        });
 
   }
   
   openFacebook() {
     this.backEndService.facebookSignUp(this.loginUser.username, this.loginUser.password);
+  }
+  
+  toastTest() {
+    
   }
   
   ngOnInit() {
@@ -41,7 +50,11 @@ export class LogInPage implements OnInit {
     
     this.backEndService
         .getBackEndToken()
-        .catch(error => this.myError = error);
+        .catch(error => {
+            this.schdErrorHandler.showSchdError(error, this.myNav);
+        });;
+    
+    this.schdErrorHandler.checkWeb(this.myNav);
   }
   
 }

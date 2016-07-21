@@ -6,14 +6,20 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackEndService {
-  private backEndUrl = 'http://8b901d1e.ngrok.io/standbyme/public/';  // URL to web api
+  private backEndUrl = 'http://3c15a926.ngrok.io/standbyme/public/';  // URL to web api
   backEndToken: string;
   private signupSession: string;
   theResponse: any;
   local: Storage = new Storage(LocalStorage);
   jwtToken: any;
   
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.getBackEndToken()
+        .then(res => {
+            this.getSavedJwt();
+        })
+        .catch(this.handleError);
+  }
   
   getUrl() {
     return this.backEndUrl;
@@ -96,6 +102,28 @@ export class BackEndService {
           .catch(this.handleError);
   }
   
+  saveItem(item) {
+    var body = JSON.stringify(item);
+    var auth = 'Bearer ' + this.getJwtToken();
+    
+    let myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', auth);
+    var options = new RequestOptions({
+      method: RequestMethod.Post,
+      url: this.backEndUrl+'save-item',
+      headers: myHeaders,
+      body: body
+    });
+    console.log(auth);
+    var req = new Request(options);
+    
+    return this.http.request(req)
+          .toPromise()
+          .then(res => JSON.stringify(res.json()))
+          .catch(this.handleError);
+  }
+  
   getSavedJwt() {
     this.local.get('id_token').then(profile => {
       this.jwtToken = profile;
@@ -133,6 +161,7 @@ export class BackEndService {
             let data = res.json();
             if (data.token != undefined ) {
               this.authSuccess(data.token);
+              this.jwtToken = data.token;
               return true;
             }
             else {

@@ -10,11 +10,13 @@ import {DisplayMapPage} from './pages/display-map/display-map';
 import {Splashscreen} from 'ionic-native';
 
 import {BackEndService} from './services/back-end-service';
+import {SchdErrorHandler} from './services/schd-error-handler';
 
 @Component({
   templateUrl: 'build/app.html',
   providers: [
     BackEndService,
+    SchdErrorHandler,
   ]
 })
 class MyApp {
@@ -23,7 +25,9 @@ class MyApp {
   rootPage: any = LogInPage;
   pages: Array<{title: string, component: any}>
 
-  constructor(private platform: Platform, private backEndService: BackEndService) {
+  constructor(private platform: Platform,
+              private backEndService: BackEndService,
+              private schdErrorHandler: SchdErrorHandler) {
     this.initializeApp();
     
     if (backEndService.isLoggedIn()) {
