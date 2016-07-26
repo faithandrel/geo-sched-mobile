@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Toast, Nav } from 'ionic-angular';
-import { Network } from 'ionic-native';
+import { Network, Diagnostic } from 'ionic-native';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 @Injectable()
 export class SchdErrorHandler {
@@ -26,8 +28,9 @@ export class SchdErrorHandler {
         //duration: 10000,
       });
       nav.present(toast);
-    }
-    
+    } 
   }
+  
+  
   
 }

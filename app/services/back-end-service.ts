@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackEndService {
-  private backEndUrl = 'http://3c15a926.ngrok.io/standbyme/public/';  // URL to web api
+  private backEndUrl = 'http://f2b862fc.ngrok.io/standbyme/public/';  // URL to web api
   backEndToken: string;
   private signupSession: string;
   theResponse: any;

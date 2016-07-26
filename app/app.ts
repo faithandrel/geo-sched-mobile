@@ -11,12 +11,14 @@ import {Splashscreen} from 'ionic-native';
 
 import {BackEndService} from './services/back-end-service';
 import {SchdErrorHandler} from './services/schd-error-handler';
+import {SchdLocation} from './services/schd-location';
 
 @Component({
   templateUrl: 'build/app.html',
   providers: [
     BackEndService,
     SchdErrorHandler,
+    SchdLocation
   ]
 })
 class MyApp {
@@ -27,7 +29,8 @@ class MyApp {
 
   constructor(private platform: Platform,
               private backEndService: BackEndService,
-              private schdErrorHandler: SchdErrorHandler) {
+              private schdErrorHandler: SchdErrorHandler,
+              private schdLocation: SchdLocation) {
     this.initializeApp();
     
     if (backEndService.isLoggedIn()) {
@@ -48,6 +51,7 @@ class MyApp {
       Splashscreen.hide();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.schdLocation.monitorGeo();
       StatusBar.styleDefault();
     });
   }

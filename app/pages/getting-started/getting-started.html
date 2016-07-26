@@ -14,6 +14,10 @@
     myResponse: {{ myResponse }}
   </p>
   
+  <p>
+    myError: {{ myError }}
+  </p>
+  
   <ion-item>
     <ion-label stacked>Message</ion-label>
     <ion-textarea [(ngModel)]="myItem.content" rows="4" ></ion-textarea>
@@ -21,6 +25,10 @@
   
   <p>
     <button primary (click)="saveThisItem()" >Submit</button>
+  </p>
+  
+  <p>
+    <button primary (click)="toastTest()" >Test</button>
   </p>
 
 </ion-content>
