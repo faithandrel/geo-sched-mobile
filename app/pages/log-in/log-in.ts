@@ -41,7 +41,7 @@ export class LogInPage implements OnInit {
   }
   
   toastTest() {
-    this.schdLocation.toastGeo(this.myNav);
+    //this.schdLocation.toastGeo(this.myNav);
   }
   
   ngOnInit() {

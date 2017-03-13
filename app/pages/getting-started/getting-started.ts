@@ -21,13 +21,6 @@ export class GettingStartedPage implements OnInit {
     this.myNav = thisNav;
   }
   
-  testAuth() {
-    this.backEndService
-        .goToAuthUrl()
-        .then(res => this.myResponse = res)
-        .catch(error => this.myError = JSON.stringify(error));
-  }
-  
   saveThisItem() {
     this.schdLocation
         .getGeo()
@@ -52,7 +45,7 @@ export class GettingStartedPage implements OnInit {
       longitude: 0
     };
     
-    this.schdLocation.toastGeo(this.myNav);
+    //this.schdLocation.toastGeo(this.myNav);
   }
   
   /*constructor() {

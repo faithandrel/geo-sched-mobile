@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackEndService {
-  private backEndUrl = 'http://f2b862fc.ngrok.io/standbyme/public/';  // URL to web api
+  private backEndUrl = 'http://2a64dfbd.ngrok.io/standbyme/public/';  // URL to web api
   backEndToken: string;
   private signupSession: string;
   theResponse: any;
@@ -77,23 +77,18 @@ export class BackEndService {
     
   }
   
-  goToAuthUrl() {
-    /*var base64Creds = btoa('faith_xyz@yahoo.com' + ":" + 'stark');
-    var auth = 'Basic ' + base64Creds;*/
-    let body = "username=" + 'test' + "&password=" + 'test' + "&_token=" + this.backEndToken;
-    
-    
+  getItems() {
     var auth = 'Bearer ' + this.getJwtToken();
-    
+  
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     myHeaders.append('Authorization', auth);
     var options = new RequestOptions({
       method: RequestMethod.Get,
-      url: this.backEndUrl+'test-angular2-jwt?'+encodeURI(body),
+      url: this.backEndUrl+'get-items',
       headers: myHeaders,
     });
-    console.log(auth);
+  
     var req = new Request(options);
     
     return this.http.request(req)

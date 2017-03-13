@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Nav} from 'ionic-angular';
 
+import {BackEndService} from '../../services/back-end-service';
+import {SchdErrorHandler} from '../../services/schd-error-handler';
 
 @Component({
   templateUrl: 'build/pages/list/list.html'
@@ -9,8 +11,12 @@ export class ListPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
-
-  constructor(private nav: NavController, navParams: NavParams) {
+  myResults: any;
+  
+  constructor(private nav: NavController, navParams: NavParams,
+              private myNav: Nav,
+              private backEndService: BackEndService,
+              private schdErrorHandler: SchdErrorHandler) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -31,5 +37,14 @@ export class ListPage {
     this.nav.push(ListPage, {
       item: item
     });
+  }
+  
+  itemsTest() {
+     this.backEndService
+        .getItems()
+        .then(res => this.myResults = res)
+        .catch(error => {
+            this.schdErrorHandler.showSchdError(error, this.myNav);
+        });
   }
 }
